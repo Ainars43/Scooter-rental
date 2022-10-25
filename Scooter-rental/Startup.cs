@@ -1,16 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Scooter_rental.Data;
 
 namespace Scooter_rental
 {
@@ -23,7 +18,6 @@ namespace Scooter_rental
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -32,9 +26,14 @@ namespace Scooter_rental
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Scooter_rental", Version = "v1" });
             });
+
+            services.AddDbContext<ScooterRentalDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("ScooterRental"));
+            });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
