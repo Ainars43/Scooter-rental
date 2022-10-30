@@ -32,6 +32,9 @@ namespace Scooter_rental.Data.Migrations
                     b.Property<decimal?>("Fee")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("ScooterId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 

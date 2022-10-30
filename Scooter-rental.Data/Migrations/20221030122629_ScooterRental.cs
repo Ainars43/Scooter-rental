@@ -13,6 +13,7 @@ namespace Scooter_rental.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ScooterId = table.Column<int>(type: "int", nullable: false),
                     StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Fee = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
@@ -28,8 +29,8 @@ namespace Scooter_rental.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PricePerMinute = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IsRented = table.Column<bool>(type: "bit", nullable: false)
+                    IsRented = table.Column<bool>(type: "bit", nullable: false),
+                    PricePerMinute = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -2,6 +2,6 @@
 {
     public interface IRentalCompanyService
     {
-        
+        decimal GetRentalIncome(int? year, bool includeNotCompleted);
     }
 }

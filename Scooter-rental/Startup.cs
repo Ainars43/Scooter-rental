@@ -5,7 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Scooter_rental.Core.Interfaces;
+using Scooter_rental.Core.Models;
 using Scooter_rental.Data;
+using Scooter_rental.Services;
 
 namespace Scooter_rental
 {
@@ -31,6 +34,26 @@ namespace Scooter_rental
             {
                 options.UseSqlServer(Configuration.GetConnectionString("ScooterRental"));
             });
+
+            services.AddScoped<IDbService, DbService>();
+            services.AddScoped<IEntityService<Scooter>, EntityService<Scooter>>();
+            services.AddScoped<IEntityService<RentedScooter>, EntityService<RentedScooter>>();
+            services.AddScoped<IScooterRentalDbContext, ScooterRentalDbContext>();
+            services.AddScoped<IScooterService, ScooterService>();
+            services.AddScoped<IRentedScooterService, RentedScooterService>();
+            services.AddScoped<ICalculators, Calculators>();
+            services.AddScoped<IRentalCompanyService, RentalCompanyService>();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200").AllowAnyHeader()
+                            .AllowCredentials()
+                            .AllowAnyMethod();
+                    });
+            });
         }
 
         
@@ -46,6 +69,12 @@ namespace Scooter_rental
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("http://localhost:4200").AllowAnyHeader()
+                    .AllowCredentials()
+                    .AllowAnyMethod();
+            });
 
             app.UseAuthorization();
 

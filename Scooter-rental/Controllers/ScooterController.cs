@@ -2,45 +2,70 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Scooter_rental.Core.Interfaces;
+using Scooter_rental.Core.Models;
+using Scooter_rental.Data;
+using Scooter_rental.Services;
 
 namespace Scooter_rental.Controllers
 {
     [Route("scooter-api")]
-    [ApiController, Authorize, EnableCors]
+    [ApiController, EnableCors]
     public class ScooterController : ControllerBase
     {
-        // GET: api/<ScooterController>
+        private readonly object _locker = new object();
+        private readonly IScooterService _scooterService;
+
+
+        public ScooterController(IScooterService scooterService)
+        {
+            _scooterService = scooterService;
+        }
+
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("getAllScooters")]
+        public IActionResult GetScooters()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_scooterService.GetAllScooters());
         }
 
-        // GET api/<ScooterController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
-        // POST api/<ScooterController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("createScooter")]
+        public IActionResult AddScooter(Scooter scooter)
         {
+            lock (_locker)
+            {
+                _scooterService.Create(scooter);
+
+                return Created("", scooter);
+            }
         }
 
-        // PUT api/<ScooterController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+
+        [HttpDelete]
+        [Route("deleteScooter")]
+        public IActionResult DeleteScooter(int id)
         {
+            lock (_locker)
+            {
+                _scooterService.DeleteScooterById(id);
+
+                return Ok();
+            }
         }
 
-        // DELETE api/<ScooterController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPut]
+        [Route("updateScooter")]
+        public IActionResult UpdateScooter(Scooter scooter)
         {
+            lock (_locker)
+            {
+                _scooterService.Update(scooter);
+
+                return Ok();
+            }
         }
     }
 }

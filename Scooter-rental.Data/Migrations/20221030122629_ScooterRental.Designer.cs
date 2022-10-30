@@ -10,7 +10,7 @@ using Scooter_rental.Data;
 namespace Scooter_rental.Data.Migrations
 {
     [DbContext(typeof(ScooterRentalDbContext))]
-    [Migration("20221025162200_ScooterRental")]
+    [Migration("20221030122629_ScooterRental")]
     partial class ScooterRental
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace Scooter_rental.Data.Migrations
 
                     b.Property<decimal?>("Fee")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ScooterId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
