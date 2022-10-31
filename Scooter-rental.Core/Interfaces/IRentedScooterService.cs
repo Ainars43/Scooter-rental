@@ -6,5 +6,6 @@ namespace Scooter_rental.Core.Interfaces
     {
         RentedScooter StartScooterRent(int id);
         RentedScooter EndScooterRent(int id);
+        bool IsValidRentedScooterId(int id);
     }
 }

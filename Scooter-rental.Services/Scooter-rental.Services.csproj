@@ -14,8 +14,4 @@
     <ProjectReference Include="..\Scooter-rental.Data\Scooter-rental.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Validators\" />
-  </ItemGroup>
-
 </Project>

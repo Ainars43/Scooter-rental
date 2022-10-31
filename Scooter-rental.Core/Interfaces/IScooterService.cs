@@ -7,7 +7,7 @@ namespace Scooter_rental.Core.Interfaces
     {
         List<Scooter> GetAllScooters();
         void DeleteScooterById(int id);
-
         Scooter GetScooterById(int id);
+        bool IsValidScooterId(int id);
     }
 }

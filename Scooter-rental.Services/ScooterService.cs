@@ -29,5 +29,10 @@ namespace Scooter_rental.Services
         {
             return Query().SingleOrDefault(s => s.Id == id);
         }
+
+        public bool IsValidScooterId(int id)
+        {
+            return true;
+        }
     }
 }

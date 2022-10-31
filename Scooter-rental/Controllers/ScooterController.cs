@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +16,13 @@ namespace Scooter_rental.Controllers
     {
         private readonly object _locker = new object();
         private readonly IScooterService _scooterService;
+        private readonly IEnumerable<IValidator> _validator;
 
 
-        public ScooterController(IScooterService scooterService)
+        public ScooterController(IScooterService scooterService, IEnumerable<IValidator> validator)
         {
             _scooterService = scooterService;
+            _validator = validator;
         }
 
 
@@ -35,6 +38,11 @@ namespace Scooter_rental.Controllers
         [Route("createScooter")]
         public IActionResult AddScooter(Scooter scooter)
         {
+            if (_validator.All(v => v.Validate(scooter)))
+            {
+                return BadRequest();
+            }
+
             lock (_locker)
             {
                 _scooterService.Create(scooter);
@@ -60,6 +68,11 @@ namespace Scooter_rental.Controllers
         [Route("updateScooter")]
         public IActionResult UpdateScooter(Scooter scooter)
         {
+            if (_validator.All(v => v.Validate(scooter)))
+            {
+                return BadRequest();
+            }
+
             lock (_locker)
             {
                 _scooterService.Update(scooter);

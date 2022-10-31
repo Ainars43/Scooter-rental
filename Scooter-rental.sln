@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scooter-rental", "Scooter-rental\Scooter-rental.csproj", "{58FD1B48-8395-4629-9A62-69365167A031}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scooter-rental", "Scooter-rental\Scooter-rental.csproj", "{58FD1B48-8395-4629-9A62-69365167A031}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scooter-rental.Core", "Scooter-rental.Core\Scooter-rental.Core.csproj", "{741F1CC2-DF65-4EA9-AB8A-C3B8FD296749}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scooter-rental.Core", "Scooter-rental.Core\Scooter-rental.Core.csproj", "{741F1CC2-DF65-4EA9-AB8A-C3B8FD296749}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scooter-rental.Data", "Scooter-rental.Data\Scooter-rental.Data.csproj", "{405848DF-BF9E-4ADF-BCE7-99CD6315325B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scooter-rental.Data", "Scooter-rental.Data\Scooter-rental.Data.csproj", "{405848DF-BF9E-4ADF-BCE7-99CD6315325B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scooter-rental.Services", "Scooter-rental.Services\Scooter-rental.Services.csproj", "{804E5DD5-58CD-46D4-B5C7-A3F462FCDA99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scooter-rental.Services", "Scooter-rental.Services\Scooter-rental.Services.csproj", "{804E5DD5-58CD-46D4-B5C7-A3F462FCDA99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scooter-rental.Tests", "Scooter-rental.Tests2\Scooter-rental.Tests.csproj", "{E9D444C9-668D-4FF8-B14C-BC799A8CC4F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{804E5DD5-58CD-46D4-B5C7-A3F462FCDA99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{804E5DD5-58CD-46D4-B5C7-A3F462FCDA99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{804E5DD5-58CD-46D4-B5C7-A3F462FCDA99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9D444C9-668D-4FF8-B14C-BC799A8CC4F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9D444C9-668D-4FF8-B14C-BC799A8CC4F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9D444C9-668D-4FF8-B14C-BC799A8CC4F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9D444C9-668D-4FF8-B14C-BC799A8CC4F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
